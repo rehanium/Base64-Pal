@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Base64 Decoder",
+  "version": "1.0",
+  "description": "Decode base64 encoded text directly on webpages by right-clicking selected text",
+  "permissions": [
+    "contextMenus",
+    "activeTab"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "24": "icons/icon24.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png"
+  }
+}
