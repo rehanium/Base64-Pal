@@ -15,14 +15,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+/**
+ * Validates if a string is valid base64
+ * @param {string} str - String to validate
+ * @returns {boolean} - True if valid base64
+ */
 function isValidBase64(str) {
   const cleanStr = str.replace(/\s/g, '');
   if (!cleanStr) return false;
   
   const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
   if (!base64Regex.test(cleanStr)) return false;
-  
-  if (cleanStr.length % 4 !== 0) return false;
   
   try {
     const decoded = atob(cleanStr);
@@ -203,7 +206,7 @@ function decodeAndReplace(selectedText) {
         message: "Successfully decoded and replaced base64 text"
       });
     } else {
-      showTooltip(`Decoded: ${decodedText}`, mouseX, mouseY);
+      showTooltip(`${decodedText}`, mouseX, mouseY);
       chrome.runtime.sendMessage({
         action: "log",
         message: "Showed decoded text in tooltip (replacement not possible)"
