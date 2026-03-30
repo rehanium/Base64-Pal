@@ -1,25 +1,35 @@
 {
   "manifest_version": 3,
-  "name": "Base64 Decoder",
-  "version": "1.0",
-  "description": "Decode base64 encoded text directly on webpages by right-clicking selected text",
+  "name": "Base64 Pal",
+  "version": "2.0",
+  "description": "Decode Base64 text inline on web pages — right-click to decode selected text, decode all on page, or undo.",
   "permissions": [
     "contextMenus",
     "activeTab"
   ],
-  
   "background": {
     "service_worker": "background.js"
   },
-  
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_end"
     }
   ],
-  
+  "commands": {
+    "decode-selection": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "Alt+Shift+D"
+      },
+      "description": "Decode selected Base64 text"
+    }
+  },
   "icons": {
     "16": "icons/icon16.png",
     "24": "icons/icon24.png",
